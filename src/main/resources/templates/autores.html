@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Listado de Autores</title>
+<!-- CSS only -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+	crossorigin="anonymous">
+</head>
+<body>
+
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+		<a class="navbar-brand" href="#">Control de Autores</a>
+		<!-- Navbar Links -->
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/autores}">Control de Autores</a></li>
+			</ul>
+		</div>
+	</nav>
+	
+	
+	<div class="container">
+		<div class="row">
+			<h1>Lista de Autores</h1>
+		</div>
+		
+		<div class="row">
+			<div class="col-lg-3">
+				<a th:href="@{/autores/nuevo}" class="btn btn-secondary btn-sm mb3">Agregar Autor</a>
+			</div>
+		</div>
+		<br>
+		
+		<table class="table table-striped table-bordered">         
+			<thead class="table-light">
+				<tr>
+					<th>Nombre</th>
+					<th>Apellido</th>
+					<th>Correo</th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="autor : ${autores}">
+					<td th:text="${autor.nombres}">Nombre</td>
+					<td th:text="${autor.apellidos}">Apellido</td>
+					<td th:text="${autor.correo}">Email</td>
+					<td>
+						<a th:href="@{/autores/editar/{idautor}(idautor=${autor.idautor})}" class="btn btn-info">Editar</a>
+						<a th:href="@{/autores/{idautor}(idautor=${autor.idautor})}" class="btn btn-danger">Eliminar</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
